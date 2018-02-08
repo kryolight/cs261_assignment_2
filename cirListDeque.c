@@ -100,7 +100,7 @@ void _addLinkAfter(struct cirListDeque *q, struct DLink *lnk, TYPE v)
 */
 void addBackCirListDeque (struct cirListDeque *q, TYPE val) 
 {
-	_addLinkAfter(q, q->Sentinel->prev, val);
+	_addLinkAfter(q, q->Sentinel.prev, val);
 }
 
 /* Adds a link to the front of the deque
@@ -112,7 +112,7 @@ void addBackCirListDeque (struct cirListDeque *q, TYPE val)
 */
 void addFrontCirListDeque(struct cirListDeque *q, TYPE val)
 {
-	_addLinkAfter(q, q->Sentinel->next, val);	 
+	_addLinkAfter(q, q->Sentinel.next, val);	 
 
 }
 
