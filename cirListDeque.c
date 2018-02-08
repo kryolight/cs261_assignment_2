@@ -62,6 +62,8 @@ struct DLink * _createLink (TYPE val)
 {
 	struct DLink *newLink = malloc(sizeof (struct DLink));
 	newLink->value = val;
+	newLink->next = NULL;
+	newLink->prev = NULL;
 	return newLink;
 
 	/*temporary return value..you may need to change it*/
