@@ -44,9 +44,9 @@ void _removeLink(struct cirListDeque *q, struct DLink *lnk);
 struct cirListDeque *createCirListDeque()
 {
 	struct cirListDeque *q;
-	q = malloc(sizeof struct (cirListDeque));
+	q = malloc(sizeof (struct cirListDeque));
 	q->size = 0;
-	q->Sentinel = malloc(sizeof (struct DLink);
+	q->Sentinel = malloc(sizeof (struct DLink));
 	q->Sentinel->value = -1;
 	return q;
 }
@@ -60,7 +60,7 @@ struct cirListDeque *createCirListDeque()
 */
 struct DLink * _createLink (TYPE val)
 {
-	struct DLink *newLink = malloc(sizeof (struct DLink);
+	struct DLink *newLink = malloc(sizeof (struct DLink));
 	newLink->value = val;
 	return newLink;
 
@@ -224,7 +224,7 @@ void printCirListDeque(struct cirListDeque *q)
 	printf("Deque contains: /n"); 
 	while(current != q->Sentinel)
 		 {
-		 	printf("%f, ", temp->value);
+		 	printf("%f, ", current->value);
 		 	current = current->next;
 		 }	 
 	printf("\n");
