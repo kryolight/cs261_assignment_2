@@ -27,7 +27,7 @@ struct DLink* _createLink (TYPE val);
 void _addLinkAfter(struct cirListDeque *q, struct DLink *lnk, TYPE v);
 void _removeLink(struct cirListDeque *q, struct DLink *lnk);
 
-void _isInDeque(struct cirListDeque *q, struct DLink *lnk);
+int _isInDeque(struct cirListDeque *q, struct DLink *lnk);
 
 /* ************************************************************************
 	Deque Functions
@@ -69,7 +69,7 @@ struct DLink * _createLink (TYPE val)
 {
 	struct DLink *newLink = NULL;
 	newLink = malloc(sizeof (struct DLink));
-	assert(newLink != NULL)
+	assert(newLink != NULL);
 	newLink->value = val;
 	newLink->next = NULL;
 	newLink->prev = NULL;
@@ -80,7 +80,7 @@ struct DLink * _createLink (TYPE val)
 
 }
 
-void _isInDeque(struct cirListDeque *q, struct DLink *lnk)
+int _isInDeque(struct cirListDeque *q, struct DLink *lnk)
 {
 	assert(q != NULL && isEmptyCirListDeque(q) != 1);
 	struct DLink *current = q->Sentinel->next; 
