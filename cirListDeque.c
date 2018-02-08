@@ -82,7 +82,7 @@ struct DLink * _createLink (TYPE val)
 
 int _isInDeque(struct cirListDeque *q, struct DLink *lnk)
 {
-	assert(q != NULL && isEmptyCirListDeque(q) != 1);
+	assert(q != NULL);
 	struct DLink *current = q->Sentinel->next; 
 	while(current != q->Sentinel)
 		 {
