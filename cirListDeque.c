@@ -221,6 +221,12 @@ int isEmptyCirListDeque(struct cirListDeque *q) {
 */
 void printCirListDeque(struct cirListDeque *q)
 {
-	/* FIXME: you must write this */	 
-
+	struct DLink *current = q->Sentinel->next;
+	printf("Deque contains: /n"); 
+	while(current != q->Sentinel)
+		 {
+		 	printf("%f, ", temp->value);
+		 	temp = temp->next;
+		 }	 
+	printf("\n");
 }
