@@ -20,7 +20,7 @@ struct DLink {
 
 struct cirListDeque {
 	int size;/* number of links in the deque */
-	struct DLink *Sentinel;	/* pointer to the sentinel */
+	struct DLink *Sentinel;	/* pointer to the Sentinel */
 };
 /* internal functions prototypes */
 struct DLink* _createLink (TYPE val);
@@ -43,7 +43,12 @@ void _removeLink(struct cirListDeque *q, struct DLink *lnk);
 
 struct cirListDeque *createCirListDeque()
 {
-	/* FIXME: you must write this */
+	struct cirListDeque *q;
+	q = malloc(sizeof struct cirListDeque);
+	q->size = 0;
+	q->Sentinel = malloc(sizeof struct DLink);
+	q->Sentinel->value = -1;
+	return q;
 }
 
 
@@ -55,10 +60,12 @@ struct cirListDeque *createCirListDeque()
 */
 struct DLink * _createLink (TYPE val)
 {
-	/* FIXME: you must write this */
+	struct DLink *newLink = malloc(sizeof struct DLink);
+	newLink->value = val;
+	return newLink;
 
 	/*temporary return value..you may need to change it*/
-	return(0);	 
+	//return(0);	 
 
 }
 
@@ -74,8 +81,12 @@ struct DLink * _createLink (TYPE val)
 */
 void _addLinkAfter(struct cirListDeque *q, struct DLink *lnk, TYPE v)
 {
-	/* FIXME: you must write this */	 
-
+	struct DLink *newLink = _createLink(v);
+	newLink->next = lnk->next;
+	newLink->prev = lnk;
+	lnk->next->prev = newLink;
+	lnk->next = newLink;
+	q->size = q->size++;
 }
 
 /* Adds a link to the back of the deque
@@ -87,8 +98,7 @@ void _addLinkAfter(struct cirListDeque *q, struct DLink *lnk, TYPE v)
 */
 void addBackCirListDeque (struct cirListDeque *q, TYPE val) 
 {
-	/* FIXME: you must write this */	 
-
+	_addLinkAfter(q, q->Sentinel->prev, val);
 }
 
 /* Adds a link to the front of the deque
@@ -100,7 +110,7 @@ void addBackCirListDeque (struct cirListDeque *q, TYPE val)
 */
 void addFrontCirListDeque(struct cirListDeque *q, TYPE val)
 {
-	/* FIXME: you must write this */	 
+	_addLinkAfter(q, q->Sentinel->next, val);	 
 
 }
 
@@ -113,9 +123,9 @@ void addFrontCirListDeque(struct cirListDeque *q, TYPE val)
 */
 TYPE frontCirListDeque(struct cirListDeque *q) 
 {
-	/* FIXME: you must write this */	 
+	return q->Sentinel->next->value;	 
 	/*temporary return value..you may need to change it*/
-	return(1);
+	//return(1);
 }
 
 /* Get the value of the back of the deque
@@ -127,9 +137,9 @@ TYPE frontCirListDeque(struct cirListDeque *q)
 */
 TYPE backCirListDeque(struct cirListDeque *q)
 {
-	/* FIXME: you must write this */	 
+	return q->Sentinel->prev->value;	 
 	/*temporary return value..you may need to change it*/
-	return(1);
+	//return(1);
 }
 
 /* Remove a link from the deque
@@ -141,7 +151,10 @@ TYPE backCirListDeque(struct cirListDeque *q)
 */
 void _removeLink(struct cirListDeque *q, struct DLink *lnk)
 {
-	/* FIXME: you must write this */	 
+	lnk->prev->next = lnk->next;
+	lnk->next->prev = lnk->prev;
+	free(lnk);
+	q->size = q->size--; 
 
 }
 
@@ -152,8 +165,7 @@ void _removeLink(struct cirListDeque *q, struct DLink *lnk)
 	post:	the front is removed from the deque
 */
 void removeFrontCirListDeque (struct cirListDeque *q) {
-	/* FIXME: you must write this */	 
-
+	_removeLink(q, q->Sentinel->next);
 }
 
 
@@ -165,7 +177,7 @@ void removeFrontCirListDeque (struct cirListDeque *q) {
 */
 void removeBackCirListDeque(struct cirListDeque *q)
 {
-  	/* FIXME: you must write this */	 
+  	_removeLink(q, q->Sentinel->prev);
 }
 
 /* De-allocate all links of the deque, and the deque itself
@@ -176,8 +188,12 @@ void removeBackCirListDeque(struct cirListDeque *q)
 */
 void freeCirListDeque(struct cirListDeque *q)
 {
-	/* FIXME: you must write this */	 
-	
+	for (int i = 0; i < q->size; ++i)
+		 {
+		 	removeFrontCirListDeque(q);
+		 }	
+	free(q->Sentinel); 
+	free(q);
 }
 
 /* Check whether the deque is empty
@@ -187,9 +203,14 @@ void freeCirListDeque(struct cirListDeque *q)
 	ret: 	1 if the deque is empty. Otherwise, 0.
 */
 int isEmptyCirListDeque(struct cirListDeque *q) {
-  	/* FIXME: you must write this */
+  	if (q->size == 0 || q->Sentinel->next == q->Sentinel->prev);
+  	{
+  		return 1;
+  	} else {
+  		return 0
+  	}
 	/*temporary return value..you may need to change it*/
-	return(1);
+	//return(1);
 }
 
 /* Print the links in the deque from front to back
