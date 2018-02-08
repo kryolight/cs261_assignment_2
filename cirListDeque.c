@@ -106,7 +106,7 @@ int _isInDeque(struct cirListDeque *q, struct DLink *lnk)
 void _addLinkAfter(struct cirListDeque *q, struct DLink *lnk, TYPE v)
 {
 	assert(q != NULL && lnk != NULL);
-	assert(isInDeque(q, lnk) == 1);
+	assert(_isInDeque(q, lnk) == 1);
 	struct DLink *newLink = NULL;
 	newLink = _createLink(v);
 	assert(newLink != NULL);
