@@ -114,7 +114,7 @@ void addBackCirListDeque (struct cirListDeque *q, TYPE val)
 */
 void addFrontCirListDeque(struct cirListDeque *q, TYPE val)
 {
-	_addLinkAfter(q, q->Sentinel->next, val);	 
+	_addLinkAfter(q, q->Sentinel, val);	 
 
 }
 
@@ -192,7 +192,7 @@ void removeBackCirListDeque(struct cirListDeque *q)
 */
 void freeCirListDeque(struct cirListDeque *q)
 {
-	for (int i = 0; i < q->size; ++i)
+	while (q->Sentinel->next != q->Sentinel->prev)
 		 {
 		 	removeFrontCirListDeque(q);
 		 }	
