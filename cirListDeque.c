@@ -237,7 +237,7 @@ void freeCirListDeque(struct cirListDeque *q)
 */
 int isEmptyCirListDeque(struct cirListDeque *q) {
   	assert(q != NULL);
-  	if (q->size == 0 || q->Sentinel->next == q-> Sentinel && q->Sentinel->prev == q->Sentinel) {
+  	if (q->size == 0 || (q->Sentinel->next == q-> Sentinel && q->Sentinel->prev == q->Sentinel)) {
   		return 1;
   	} else {
   		return 0;
