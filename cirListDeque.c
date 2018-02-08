@@ -192,7 +192,7 @@ void removeBackCirListDeque(struct cirListDeque *q)
 */
 void freeCirListDeque(struct cirListDeque *q)
 {
-	while (q->Sentinel->next != q->Sentinel->prev)
+	while (q->Sentinel->next != q->Sentinel && q->Sentinel->prev != q->Sentinel)
 		 {
 		 	removeFrontCirListDeque(q);
 		 }	
@@ -225,7 +225,7 @@ int isEmptyCirListDeque(struct cirListDeque *q) {
 void printCirListDeque(struct cirListDeque *q)
 {
 	struct DLink *current = q->Sentinel->next;
-	printf("Deque contains: /n"); 
+	printf("Deque contains: \n"); 
 	while(current != q->Sentinel)
 		 {
 		 	printf("%f, ", current->value);

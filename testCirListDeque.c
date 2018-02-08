@@ -6,7 +6,7 @@ int main(int argc, char* argv[]) {
         
 	struct cirListDeque *q;
 	q = createCirListDeque();
-		printf("deque sentinel initialized./n");
+		printf("deque sentinel initialized.\n");
 	if(isEmptyCirListDeque(q) == 1)
 		printf("deque is empty.\n");
 	addFrontCirListDeque(q, 1);
